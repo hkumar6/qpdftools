@@ -30,12 +30,30 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
   connect(rotatePage, &RotatePage::runAsyncFunction, this, &MainWindow::runAsyncFunction);
 
   connect(this, &MainWindow::showMessageSignal, this, &MainWindow::showMessageSlot);
+
+  // Check if qpdf is installed
+  checkQpdfSlot();
 }
 
 MainWindow::~MainWindow() { delete ui; }
 
+// Define the checkQpdfSlot function
+void MainWindow::checkQpdfSlot() {
+  // Check if qpdf is installed
+  QString output = qpdf.checkQpdf();
+  // Show output in statusbar
+  emit showMessageSignal(output, 5000);
+  // Change text color in statusbar
+  if (output.contains("qpdf version")) {
+    ui->statusBar->setStyleSheet("color: green");
+  } else {
+    ui->statusBar->setStyleSheet("color: red");
+  }
+}
+
 // Public Slots
 void MainWindow::showMessageSlot(const QString &message, int timeout) {
+  qDebug() << "Showing message:" << message << "for" << timeout << "milliseconds";
   ui->statusBar->showMessage(message, timeout);
 }
 

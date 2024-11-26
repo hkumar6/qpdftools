@@ -25,6 +25,7 @@ public slots:
   void setPage(int newPage);
   void runAsyncFunction(std::function<void()> function);
   void showMessageSlot(const QString &message, int timeout = 0);
+  void checkQpdfSlot();
 
 signals:
   void showMessageSignal(const QString &message, int timeout = 0);

@@ -2,6 +2,22 @@
 
 Qpdf::Qpdf() : ExternalSoftware("qpdf", "qpdf") {}
 
+QString Qpdf::checkQpdf() {
+  // qpdf --version
+  QStringList arguments;
+  arguments << "--version";
+  QProcess process;
+  process.start("qpdf", arguments);
+  if (!process.waitForStarted()) {
+    return "Cannot start qpdf process. QPDF is not installed or not in PATH.";
+  }
+  process.waitForFinished();
+  // get the output of the command
+  QString output = process.readAllStandardOutput();
+  // return the output text
+  return output;
+}
+
 void Qpdf::splitPDF(const QString &input, const QString &outputFolder) {
   // qpdf in.pdf out.pdf --split-pages
 

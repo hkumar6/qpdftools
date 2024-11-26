@@ -6,6 +6,8 @@ class Qpdf : public ExternalSoftware {
 public:
   Qpdf();
 
+  QString checkQpdf();
+
   void splitPDF(const QString &input, const QString &outputFolder);
   void splitPDF(const QString &input, const QString &output, int firstPage, int lastPage);
 
