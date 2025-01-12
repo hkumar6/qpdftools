@@ -18,11 +18,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
   ui->stackedWidget->addWidget(splitPage);
   connect(splitPage, &SplitPage::setPage, this, &MainWindow::setPage);
   connect(splitPage, &SplitPage::runAsyncFunction, this, &MainWindow::runAsyncFunction);
+  connect(splitPage, &SplitPage::showMessageSignal, this, &MainWindow::showMessageSlot);
 
   MergePage *mergePage = new MergePage(this);
   ui->stackedWidget->addWidget(mergePage);
   connect(mergePage, &MergePage::setPage, this, &MainWindow::setPage);
   connect(mergePage, &MergePage::runAsyncFunction, this, &MainWindow::runAsyncFunction);
+  connect(mergePage, &MergePage::showMessageSignal, this, &MainWindow::showMessageSlot);
 
   RotatePage *rotatePage = new RotatePage(this);
   ui->stackedWidget->addWidget(rotatePage);
@@ -53,8 +55,14 @@ void MainWindow::checkQpdfSlot() {
 
 // Public Slots
 void MainWindow::showMessageSlot(const QString &message, int timeout) {
-  qDebug() << "Showing message:" << message << "for" << timeout << "milliseconds";
   ui->statusBar->showMessage(message, timeout);
+  if (message.contains("Success")) {
+    ui->statusBar->setStyleSheet("color: green");
+  } else if (message.contains("Failed") || message.contains("ERROR")) {
+    ui->statusBar->setStyleSheet("color: red");
+  } else {
+    ui->statusBar->setStyleSheet("color: orange");
+  }
 }
 
 void MainWindow::setPage(int newPage) { ui->stackedWidget->setCurrentIndex(newPage); }

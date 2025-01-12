@@ -3,7 +3,7 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 include(KDEInstallDirs)
 
 # Add Qt
-find_package(Qt6 REQUIRED COMPONENTS Widgets Concurrent LinguistTools)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Concurrent LinguistTools Pdf)
 
 set(SRC
   main.cpp
@@ -18,6 +18,8 @@ set(SRC
   interface/mainwindow.cpp
 
   interface/utils/fileDialog.cpp
+  interface/utils/pdfListItemWidget.cpp
+  interface/utils/pdfUtils.cpp
 
   interface/pages/0-menu/menu.ui
   interface/pages/0-menu/menu.cpp
@@ -42,6 +44,7 @@ target_link_libraries(qpdftools
   Qt6::Core
   Qt6::Concurrent
   Qt6::Widgets
+  Qt6::Pdf
 )
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")

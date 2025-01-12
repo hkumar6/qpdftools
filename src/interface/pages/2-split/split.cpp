@@ -10,8 +10,19 @@ SplitPage::~SplitPage() { delete ui; }
 void SplitPage::on_tbtn_return_clicked() { emit setPage(0); }
 
 void SplitPage::on_btn_selectFile_clicked() {
+  // Select a PDF file and count the number of pages
   ui->ln_file->setText(fileDialog.getOpenFileName(this));
-  ui->ln_file->setFocus();
+  int pageCount = getPdfPageCount(ui->ln_file->text());
+  if (pageCount == 0) {
+    emit showMessageSignal(tr("Failed to load PDF"), 5000);
+    return;
+  }
+  // Set the maximum value of the spinboxes to the number of pages
+  ui->spinBox_fistPage->setMaximum(pageCount);
+  ui->spinBox_lastPage->setMaximum(pageCount);
+  ui->spinBox_lastPage->setValue(pageCount);
+  // Set focus on first or last page?
+  ui->spinBox_fistPage->setFocus();
 }
 
 void SplitPage::on_rbtn_extractAll_clicked() {
@@ -35,13 +46,13 @@ void SplitPage::on_spinBox_fistPage_valueChanged(int arg1) {
 void SplitPage::on_tbtn_pdfSplit_clicked() {
   QString input = ui->ln_file->text();
   if (!QFile::exists(input)) {
-    QMessageBox::warning(this, tr("Warning"), tr("You need to select a valide PDF file"));
+    QMessageBox::warning(this, tr("Warning"), tr("You need to select a valid PDF file"));
     return;
   }
 
   if (ui->rbtn_extractAll->isChecked()) {
     QString outputFolder = QFileDialog::getExistingDirectory(this, tr("Select Output Folder"));
-    if (outputFolder == "") {
+    if (outputFolder.isEmpty()) {
       return;
     }
 

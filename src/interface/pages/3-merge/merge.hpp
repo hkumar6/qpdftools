@@ -5,6 +5,8 @@
 
 #include "api/qpdf.hpp"
 #include "interface/utils/fileDialog.hpp"
+#include "interface/utils/pdfListItemWidget.hpp"
+#include "interface/utils/pdfUtils.hpp"
 
 namespace Ui {
 class MergePage;
@@ -20,6 +22,7 @@ public:
 signals:
   void setPage(int newPage);
   void runAsyncFunction(std::function<void()> asyncFunction);
+  void showMessageSignal(const QString &message, int timeout);
 
 private slots:
   void on_tbtn_return_clicked();

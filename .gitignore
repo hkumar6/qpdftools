@@ -16,3 +16,10 @@ Makefile
 prefix.sh
 CMakeCache.txt
 cmake_install.cmake
+
+# vscode
+.vscode/
+*.vscode/
+*.vscodeignore
+*.code-workspace
+.vscode/settings.json
