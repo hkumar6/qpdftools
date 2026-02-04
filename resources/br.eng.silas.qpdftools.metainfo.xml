@@ -3,16 +3,27 @@
   <id>br.eng.silas.qpdftools</id>
 
   <name>Qpdf Tools</name>
-  <summary>Tool for managing PDFs</summary>
-  <developer_name>Silas Henrique</developer_name>
+  <summary>Manage and optimize PDF files</summary>
+  <developer id="br.eng.silas">
+    <name translate="no">Silas Henrique</name>
+    <url>https://silas.eng.br</url>
+  </developer>
 
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>Unlicense</project_license>
 
   <description>
-    <p>Qpdf Tools is an Qt interface for Ghostscript and QPDF.</p>
-    <p>Qpdf Tools makes possible for normal users to manage their PDFs.</p>
-    <p>With Qpdf Tools, you can easily compress, split, merge and even rotate your pdf documents.</p>
+    <p>
+      Qpdf Tools is a user-friendly Qt interface for Ghostscript and QPDF,
+      designed to make PDF management simple and accessible for everyone.
+    </p>
+    <p>With Qpdf Tools, you can easily perform common PDF operations such as:</p>
+    <ul>
+      <li>Compress PDF files to reduce their size</li>
+      <li>Split documents into multiple files</li>
+      <li>Merge multiple PDFs into a single document</li>
+      <li>Rotate PDF pages</li>
+    </ul>
   </description>
 
   <supports>
@@ -36,25 +47,37 @@
   <screenshots>
     <screenshot type="default">
       <image>https://github.com/silash35/qpdftools/raw/master/resources/screenshots/menu-screen.png?raw=true</image>
-      <caption>Menu screen of Qpdf Tools</caption>
+      <caption>Main menu</caption>
     </screenshot>
     <screenshot>
       <image>https://github.com/silash35/qpdftools/raw/master/resources/screenshots/merge-screen.png?raw=true</image>
-      <caption>Merge PDFs screen of Qpdf Tools</caption>
+      <caption>Merge multiple PDF files</caption>
     </screenshot>
     <screenshot>
       <image>https://github.com/silash35/qpdftools/raw/master/resources/screenshots/compress-screen.png?raw=true</image>
-      <caption>Compress PDF screen of Qpdf Tools</caption>
+      <caption>Compress PDF files</caption>
     </screenshot>
   </screenshots>
 
   <releases>
+    <release version="3.1.3" date="2025-12-30">
+      <url type="details">https://github.com/silash35/qpdftools/releases/tag/v3.1.3</url>
+      <description>
+        <p>Maintenance and packaging improvements</p>
+        <ul>
+          <li>Update Flatpak runtime and dependencies</li>
+          <li>Improve AppStream metadata to better follow Flathub guidelines</li>
+          <li>Enhance .desktop file</li>
+          <li>Fix typos and grammar</li>
+        </ul>
+      </description>
+    </release>
     <release version="3.1.2" date="2025-03-08">
       <url type="details">https://github.com/silash35/qpdftools/releases/tag/v3.1.2</url>
       <description>
         <p>Fix some bugs</p>
         <ul>
-          <li>Fix file corruption when input file is the same of output</li>
+          <li>Fix file corruption when the input file is the same as the output file</li>
           <li>Fix app icons on new breeze theme</li>
           <li>Update screenshots</li>
         </ul>
@@ -93,8 +116,8 @@
         <p>Upgrade to Qt6</p>
         <ul>
           <li>Fully upgrade to Qt6</li>
-          <li>Improve the appearance of the menu screen.</li>
-          <li>Refactor the code, making maintenance easier.</li>
+          <li>Improve the appearance of the menu screen</li>
+          <li>Refactor the code, making maintenance easier</li>
           <li>And many other improvements</li>
         </ul>
       </description>
